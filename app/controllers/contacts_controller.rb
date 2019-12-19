@@ -6,7 +6,8 @@ class ContactsController < ApplicationController
   end
 
   def create
-
+    @contact = Contact.create(contact_params)
+    @contact.save!
   end
 
   def show
