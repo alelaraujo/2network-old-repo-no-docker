@@ -1,5 +1,10 @@
 class ContactsController < ApplicationController
   before_action contact_params[only :new]
+
+  def new
+    @contact = Contact.new()
+  end
+
   def create
 
   end
