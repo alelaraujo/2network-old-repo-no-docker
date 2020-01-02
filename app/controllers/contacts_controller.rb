@@ -1,5 +1,5 @@
 class ContactsController < ApplicationController
-  before_action :contact_params, only: [:new]
+  before_action :contact_params, only: [:show, :update]
   # before_action :set_place, only: [:show]
   # skip_before_action :authenticate_user!, only: [:index]
 
