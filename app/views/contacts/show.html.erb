@@ -1,2 +1,12 @@
-<h1>Contacts#show</h1>
-<p>Find me in app/views/contacts/show.html.erb</p>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-md-9">
+      <h2>Contacts > <%= @contact.first_name %> <%= @contact.last_name %></h2>
+      <p>Here will be the interactions</p>
+      <p>Add interaction</p>
+      <%= link_to "Back", contacts_path %>
+      <%= link_to "Edit", edit_contact_path(@contact) %>
+      <%= link_to 'Delete', contact_path(@contact), method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+  </div>
+</div>
