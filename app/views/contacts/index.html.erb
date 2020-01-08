@@ -1,0 +1,7 @@
+<h1>Contacts#index</h1>
+<p>Find me in app/views/contacts/index.html.erb</p>
+<% @contacts.each do |contact| %>
+  <%= link_to contact.first_name, contact_path(contact) %>
+  <%= contact.last_name %>
+  <%= contact.user_id %>
+<% end %>

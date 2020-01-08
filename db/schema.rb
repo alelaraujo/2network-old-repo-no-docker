@@ -17,6 +17,8 @@ ActiveRecord::Schema.define(version: 2019_12_16_193525) do
 
   create_table "contacts", force: :cascade do |t|
     t.bigint "user_id"
+    t.string "first_name"
+    t.string "last_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_contacts_on_user_id"
