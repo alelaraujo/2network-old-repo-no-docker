@@ -1,5 +1,5 @@
 class ContactsController < ApplicationController
-  before_action :set_contact, only: %w[:show :update]
+  before_action :set_contact, only: [:show, :update, :edit, :destroy]
   # before_action :set_place, only: [:show]
   # skip_before_action :authenticate_user!, only: [:index]
 
@@ -28,9 +28,16 @@ class ContactsController < ApplicationController
   end
 
   def update
+    if @contact.update(contact_params)
+      redirect_to contact_path(@contact)
+    else
+      render :edit
+    end
   end
 
   def destroy
+    @contact.destroy
+    redirect_to contacts_path
   end
 
   private
