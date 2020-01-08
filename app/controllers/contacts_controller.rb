@@ -1,5 +1,5 @@
 class ContactsController < ApplicationController
-  before_action :contact_params, only: [:show, :update]
+  before_action :set_contact, only: %w[:show :update]
   # before_action :set_place, only: [:show]
   # skip_before_action :authenticate_user!, only: [:index]
 
@@ -7,12 +7,16 @@ class ContactsController < ApplicationController
     @contacts = Contact.all
   end
 
+  def show
+  end
+
   def new
     @contact = Contact.new
   end
 
   def create
-    @contact = Contact.create(contact_params)
+    @contact = Contact.new(contact_params)
+    @contact.user = current_user
     if @contact.save
       redirect_to contact_path(@contact)
     else
@@ -20,7 +24,7 @@ class ContactsController < ApplicationController
     end
   end
 
-  def show
+  def edit
   end
 
   def update
@@ -36,6 +40,6 @@ class ContactsController < ApplicationController
   end
 
   def contact_params
-    params.require(:contact).permit(:name, :address)
+    params.require(:contact).permit(:first_name, :last_name)
   end
 end

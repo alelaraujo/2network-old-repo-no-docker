@@ -15,20 +15,12 @@ ActiveRecord::Schema.define(version: 2019_12_16_193525) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "contact_infos", force: :cascade do |t|
-    t.bigint "type_id"
-    t.string "value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["type_id"], name: "index_contact_infos_on_type_id"
-  end
-
   create_table "contacts", force: :cascade do |t|
-    t.bigint "contactinfo_id"
     t.bigint "user_id"
+    t.string "first_name"
+    t.string "last_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["contactinfo_id"], name: "index_contacts_on_contactinfo_id"
     t.index ["user_id"], name: "index_contacts_on_user_id"
   end
 
