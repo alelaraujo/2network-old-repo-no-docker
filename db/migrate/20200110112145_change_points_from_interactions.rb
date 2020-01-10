@@ -1,0 +1,5 @@
+class ChangePointsFromInteractions < ActiveRecord::Migration[5.2]
+  def change
+      rename_column :interactions, :point, :score
+    end
+end

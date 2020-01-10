@@ -1,6 +1,5 @@
 class ContactsController < ApplicationController
-  before_action :set_contact, only: [:show, :update, :edit, :destroy]
-  # before_action :set_place, only: [:show]
+  before_action :set_contact, only: %i[show update edit destroy]
   # skip_before_action :authenticate_user!, only: [:index]
 
   def index
