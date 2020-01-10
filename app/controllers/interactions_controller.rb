@@ -1,6 +1,6 @@
 class InteractionsController < ApplicationController
   before_action :set_interaction, only: %i[show update edit destroy]
-  # before_action :set_contact, only: %i[]
+  before_action :set_contact, only: %i[new create]
 
   def index
     @interaction = Interaction.all
@@ -16,6 +16,7 @@ class InteractionsController < ApplicationController
   def create
     @interaction = Interaction.new(interaction_params)
     @interaction.user = current_user
+    @interaction.contact_id = @contact
     @interaction.score = 1
     if @interaction.save
       redirect_to contact_path(@interaction.contact_id)
@@ -43,10 +44,10 @@ class InteractionsController < ApplicationController
   private
 
   def set_contact
-    @contact = Contact.find(params[:id])
+    @contact = Contact.find(params[:contact_id])
   end
 
-  def set_interacion
+  def set_interaction
     @interaction = Interaction.find(params[:id])
   end
 
