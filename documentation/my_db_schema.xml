@@ -61,48 +61,33 @@
 <part>id</part>
 </key>
 </table>
-<table x="648" y="318" name="interactions">
+<table x="614" y="251" name="interactions">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="user_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="users" row="id" />
+</row>
+<row name="contact_id" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="contacts" row="id" />
 </row>
 <row name="type_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>0</default><relation table="types" row="id" />
 </row>
-<row name="notes" null="1" autoincrement="0">
+<row name="note" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="points" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="contact_id" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="contacts" row="id" />
-</row>
-<key type="PRIMARY" name="">
-<part>id</part>
-</key>
-</table>
-<table x="388" y="83" name="contact_infos">
-<row name="id" null="1" autoincrement="1">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="type" null="1" autoincrement="0">
-<datatype>VARCHAR</datatype>
-<default>NULL</default><relation table="types" row="id" />
-</row>
-<row name="value" null="1" autoincrement="0">
+<row name="score" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="645" y="58" name="contacts">
+<table x="594" y="42" name="contacts">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -110,10 +95,12 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="users" row="id" />
 </row>
-<row name="contact_info_id" null="1" autoincrement="0">
+<row name="first_name" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="contact_infos" row="id" />
-</row>
+<default>NULL</default></row>
+<row name="last_name" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
