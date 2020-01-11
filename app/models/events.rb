@@ -1,4 +1,4 @@
-class Interaction < ApplicationRecord
+class Event < ApplicationRecord
   belongs_to :user
   belongs_to :contacts
   has_many :contacts

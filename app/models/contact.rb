@@ -1,4 +1,4 @@
 class Contact < ApplicationRecord
   belongs_to :user
-  has_many :interaction
+  has_many :event
 end

@@ -1,4 +1,4 @@
 class Type < ApplicationRecord
-  belongs_to :interaction
+  belongs_to :event
   belongs_to :contactinfo
 end
