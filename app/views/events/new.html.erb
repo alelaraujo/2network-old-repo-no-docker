@@ -2,7 +2,7 @@
   <div class="row justify-content-md-center mt-3">
     <div class="col-md-9">
       <h2><%= link_to contacts_path, class: "text-reset" do %>Contacts<% end %> > Create</h2>
-      <%= simple_form_for [@contact, @interaction] do |f| %>
+      <%= simple_form_for [@contact, @event] do |f| %>
           <%= f.error_notification %>
           <%= f.input :note %>
           <%= f.input :type_id %>
