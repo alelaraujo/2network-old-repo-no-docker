@@ -16,10 +16,10 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.user = current_user
-    @event.contact_id = @contact
+    @event.contact_id = @contact.id
     @event.score = 1
     if @event.save
-      redirect_to contact_path(@event.contact_id)
+      redirect_to contact_path(@contact)
     else
       render :new
     end
@@ -52,6 +52,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:type_id, :note, :score, :contact_id)
+    params.require(:event).permit(:type_id, :note, :contact_id)
   end
 end
