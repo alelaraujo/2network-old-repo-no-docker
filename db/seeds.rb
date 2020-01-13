@@ -9,6 +9,7 @@
 # User.new(first_name: "Alexandre", last_name: "Araujo", email: "alexandre@araujo.me", password: "123456")
 User.destroy_all
 Contact.destroy_all
+Type.destroy_all
 
 User.create!(email: "alexandre@araujo.me", password: "123456")
 User.create!(email: "simony@araujo.me", password: "123456")
@@ -21,9 +22,9 @@ Contact.create!(user_id: User.last.id, first_name: "Irandir", last_name: "Alcant
 Contact.create!(user_id: User.last.id, first_name: "Estela", last_name: "Alcantara")
 Contact.create!(user_id: User.last.id, first_name: "Jake", last_name: "Dog")
 
-# Type.create!(name: "Message", icon: "fas fa-comments")
-# Type.create!(name: "Meeting", icon: "fas fa-calendar-day")
-# Type.create!(name: "Other", icon: "fas fa-question-circle")
-# Type.create!(name: "Phone", icon: "fas fa-phone-square")
+Type.create!(name: "Message", icon: "fa-comments")
+Type.create!(name: "Meeting", icon: "fa-calendar-day")
+Type.create!(name: "Other", icon: "fa-question-circle")
+Type.create!(name: "Phone", icon: "fa-phone-square")
 
 
