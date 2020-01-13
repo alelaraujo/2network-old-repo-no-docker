@@ -3,9 +3,7 @@ class ContactsController < ApplicationController
   # skip_before_action :authenticate_user!, only: [:index]
 
   def index
-    # @contacts = Contact.all
-    @user = current_user
-    @contacts = @user.contacts
+    @contacts = current_user.contacts
   end
 
   def show
