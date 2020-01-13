@@ -2,22 +2,17 @@
   <div class="row justify-content-md-center mt-3">
     <div class="col-md-9">
       <h2><%= link_to contacts_path, class: "text-reset" do %>Contacts<% end %> > <%= @contact.first_name %> <%= @contact.last_name %></h2>
-      <p>Here will be the interactions</p>
-      <% @contact.events.each do |event| %>
-        <p><%= event.note %></p>
-      <% end %>
-      <ul class="list-unstyled">
+      <ul class="list-unstyled my-3">
         <% @contact.events.each do |event| %>
-          <li class="media">
-            <img src="..." class="mr-3" alt="...">
-            <i class="<%=  %>"></i>
+          <li class="media">        
+            <i class="fas fa-utensils fa-2x mr-2"></i>
             <div class="media-body">
               <h5 class="mt-0 mb-1"><%= event.created_at %></h5>
               <%= event.note %>
             </div>
           </li>
          <% end %>
-      <p>Add event</p>
+      </ul>
       <%= link_to "Add interaction", new_contact_event_path(@contact), class: "btn btn-primary" %>
       <%= link_to "Back", contacts_path, class: "btn btn-secondary" %>
       <%= link_to "Edit", edit_contact_path(@contact), class: "btn btn-secondary" %>
