@@ -9,12 +9,21 @@
 # User.new(first_name: "Alexandre", last_name: "Araujo", email: "alexandre@araujo.me", password: "123456")
 User.destroy_all
 Contact.destroy_all
-Type.destroy_all
 
 User.create!(email: "alexandre@araujo.me", password: "123456")
+User.create!(email: "simony@araujo.me", password: "123456")
 
 Contact.create!(user_id: User.first.id, first_name: "Simony", last_name: "Alcantara")
 Contact.create!(user_id: User.first.id, first_name: "André", last_name: "Araujo")
 Contact.create!(user_id: User.first.id, first_name: "Carina", last_name: "Carvalho")
 
-Type.create!(name: "Other", icon: "fas fa-question-circle")
+Contact.create!(user_id: User.last.id, first_name: "Irandir", last_name: "Alcantara")
+Contact.create!(user_id: User.last.id, first_name: "Estela", last_name: "Alcantara")
+Contact.create!(user_id: User.last.id, first_name: "Jake", last_name: "Dog")
+
+# Type.create!(name: "Message", icon: "fas fa-comments")
+# Type.create!(name: "Meeting", icon: "fas fa-calendar-day")
+# Type.create!(name: "Other", icon: "fas fa-question-circle")
+# Type.create!(name: "Phone", icon: "fas fa-phone-square")
+
+

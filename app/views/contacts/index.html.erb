@@ -2,18 +2,16 @@
   <div class="row justify-content-md-center mt-3">
     <div class="col-md-9">
       <h2>Contacts</h2>
-      <ul class="list-group my-3">
+      <div class="list-group my-3">
         <% @contacts.each do |contact| %>
-          <li class="list-group-item">
-          <%= link_to contact_path(contact) do %>
+          <%= link_to contact_path(contact), class: "list-group-item list-group-item-action" do %>
             <%= contact.first_name %> <%= contact.last_name %>
           <% end %>
-          </li>
         <% end %>
-      </ul>
-      <p>
+      </div>
       <%= link_to "Add new contact", new_contact_path, class: "btn btn-primary btn-lg" %>
       </p>
     </div>
   </div>
 </div>
+
