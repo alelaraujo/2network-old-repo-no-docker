@@ -7,7 +7,7 @@
           <li class="media">        
             <i class="fas <%= event.type.icon %> fa-2x mr-2"></i>
             <div class="media-body">
-              <h5 class="mt-0 mb-1"><%= event.created_at %></h5>
+              <h5 class="mt-0 mb-1"><%= event.created_at.strftime('Created on %m/%d/%y') %></h5>
               <%= event.note %>
             </div>
           </li>

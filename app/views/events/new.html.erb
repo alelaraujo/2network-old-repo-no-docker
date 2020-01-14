@@ -5,7 +5,7 @@
       <%= simple_form_for [@contact, @event] do |f| %>
           <%= f.error_notification %>
           <%= f.input :note %>
-          <%= f.input :type_id, collection: Type.all, selected: 3 %>
+          <%= f.input :type_id, collection: Type.all.order(id: :asc), selected: 3 %>
           <%= f.button :submit, class: "btn-primary" %>
           <%= f.button :button, "Cancel", type: "reset", class: "btn-outline-secondary" %>
       <% end %>

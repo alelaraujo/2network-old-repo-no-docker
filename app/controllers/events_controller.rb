@@ -2,22 +2,25 @@ class EventsController < ApplicationController
   before_action :set_event, only: %i[show update edit destroy]
   before_action :set_contact, only: %i[new create]
 
-  def index
-    @event = Event.all
-  end
+  # def index
+  #   @event = Event.all
+  #   @event = policy_scope(current_user.contacts).order(created_at: :desc)
+  # end
 
-  def show
-  end
+  # def show
+  #   authorize @event
+  # end
 
   def new
     @event = Event.new
+    authorize @event
   end
 
   def create
     @event = Event.new(event_params)
+    authorize @event
     @event.user = current_user
-    @event.contact_id = @contact.id
-    @event.score = 1
+    @event.contact = @contact
     if @event.save
       redirect_to contact_path(@contact)
     else
@@ -29,6 +32,7 @@ class EventsController < ApplicationController
   end
 
   def update
+    authorize @event
     if @event.update(event_params)
       redirect_to contact_path(@event.contact_id)
     else
@@ -37,6 +41,7 @@ class EventsController < ApplicationController
   end
 
   def destroy
+    authorize @event
     @event.destroy
     redirect_to contact_path(@event.contact_id)
   end

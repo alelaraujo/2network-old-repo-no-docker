@@ -3,18 +3,21 @@ class ContactsController < ApplicationController
   # skip_before_action :authenticate_user!, only: [:index]
 
   def index
-    @contacts = current_user.contacts
+    @contacts = policy_scope(current_user.contacts).order(created_at: :desc)
   end
 
   def show
+    authorize @contact 
   end
-
+  
   def new
     @contact = Contact.new
+    authorize @contact
   end
-
+  
   def create
     @contact = Contact.new(contact_params)
+    authorize @contact
     @contact.user = current_user
     if @contact.save
       redirect_to contact_path(@contact)
@@ -22,27 +25,30 @@ class ContactsController < ApplicationController
       render :new
     end
   end
-
+  
   def edit
+    authorize @contact
   end
-
+  
   def update
+    authorize @contact
     if @contact.update(contact_params)
       redirect_to contact_path(@contact)
     else
       render :edit
     end
   end
-
+  
   def destroy
+    authorize @contact
     @contact.destroy
     redirect_to contacts_path
   end
-
+  
   private
-
+  
   def set_contact
-    @contact = Contact.find(params[:id])
+    @contact = current_user.contacts.find(params[:id])
   end
 
   def contact_params
