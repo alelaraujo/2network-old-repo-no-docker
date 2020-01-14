@@ -1,4 +1,4 @@
 class Type < ApplicationRecord
-    belongs_to :event
-  end
+    has_many :contacts
+end
   
