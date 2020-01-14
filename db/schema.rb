@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 2020_01_11_165711) do
   create_table "events", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "type_id"
-    t.integer "icon"
     t.text "note"
     t.integer "score"
     t.bigint "contact_id"
