@@ -12,10 +12,12 @@ class ContactsController < ApplicationController
   
   def new
     @contact = Contact.new
+    authorize @contact
   end
   
   def create
     @contact = Contact.new(contact_params)
+    authorize @contact
     @contact.user = current_user
     if @contact.save
       redirect_to contact_path(@contact)
@@ -25,9 +27,11 @@ class ContactsController < ApplicationController
   end
   
   def edit
+    authorize @contact
   end
   
   def update
+    authorize @contact
     if @contact.update(contact_params)
       redirect_to contact_path(@contact)
     else
@@ -36,6 +40,7 @@ class ContactsController < ApplicationController
   end
   
   def destroy
+    authorize @contact
     @contact.destroy
     redirect_to contacts_path
   end
@@ -43,9 +48,7 @@ class ContactsController < ApplicationController
   private
   
   def set_contact
-    # @contact = policy(Contact.find(params[:id])).show?
     @contact = current_user.contacts.find(params[:id])
-    # raise
   end
 
   def contact_params
