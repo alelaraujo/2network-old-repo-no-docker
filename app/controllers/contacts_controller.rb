@@ -7,6 +7,7 @@ class ContactsController < ApplicationController
   end
 
   def show
+    authorize @contact 
   end
   
   def new
@@ -43,8 +44,8 @@ class ContactsController < ApplicationController
   
   def set_contact
     # @contact = policy(Contact.find(params[:id])).show?
-    @contact = Contact.find(params[:id])
-    authorize @contact 
+    @contact = current_user.contacts.find(params[:id])
+    # raise
   end
 
   def contact_params
