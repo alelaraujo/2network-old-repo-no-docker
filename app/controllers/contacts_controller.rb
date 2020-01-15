@@ -11,13 +11,11 @@ class ContactsController < ApplicationController
   end
   
   def new
-    @contact = Contact.new
-    authorize @contact
+    authorize @contact = Contact.new
   end
   
   def create
-    @contact = Contact.new(contact_params)
-    authorize @contact
+    authorize @contact = Contact.new(contact_params)
     @contact.user = current_user
     if @contact.save
       redirect_to contact_path(@contact)
@@ -40,8 +38,7 @@ class ContactsController < ApplicationController
   end
   
   def destroy
-    authorize @contact
-    @contact.destroy
+    authorize @contact.destroy
     redirect_to contacts_path
   end
   
