@@ -3,8 +3,24 @@
     <div class="col-md-9">
       <h2><%= link_to contacts_path, class: "text-reset" do %>Contacts<% end %> > <%= @contact.first_name %> <%= @contact.last_name %></h2>
 
-        <% @contact.events.count %>
           
+            <ul class="list-unstyled my-3">
+        <% @events.each do |event| %>
+          <li class="media">        
+            <i class="fas <%= event.type.icon %> fa-3x mr-2"></i>
+            <div class="media-body">
+              <h5 class="mt-0 mb-1">
+                <%= event.created_at.strftime('Created on %m/%d/%y') %> |
+                <%= link_to "Edit", edit_contact_event_path(event.contact_id, event.id), class: "text-reset" %> | 
+                <%= link_to "Delete", contact_event_path(event.contact_id, event.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "text-reset" %>
+              </h5>
+              <p><%= event.note %></p>
+            </div>
+          </li>
+         <% end %>
+      </ul>
+
+
       <%= link_to "Add event", new_contact_event_path(@contact), class: "btn btn-primary" %>
       <%= link_to "Back", contacts_path, class: "btn btn-secondary" %>
       <%= link_to "Edit", edit_contact_path(@contact), class: "btn btn-secondary" %>
@@ -15,3 +31,4 @@
 
 
 
+ 

@@ -8,6 +8,9 @@ class ContactsController < ApplicationController
 
   def show
     authorize @contact 
+    @events = Event.where(user_id: current_user.id).where(contact_id: @contact.id)
+    authorize @events
+    # @events = policy_scope(current_user.contacts.events)
   end
   
   def new
