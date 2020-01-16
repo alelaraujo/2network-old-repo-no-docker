@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-  belongs_to :user
+  # belongs_to :user
   belongs_to :contact
   belongs_to :type
 
