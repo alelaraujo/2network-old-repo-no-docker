@@ -12,7 +12,7 @@ class EventsController < ApplicationController
 
   def create
     authorize @event = Event.new(event_params)
-    @event.user = current_user
+    @event.user_id = current_user.id
     @event.contact = @contact
     if @event.save
       redirect_to contact_path(@contact)
