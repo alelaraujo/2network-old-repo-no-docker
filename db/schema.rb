@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2019_12_16_193552) do
     t.index ["user_id"], name: "index_contacts_on_user_id"
   end
 
-  create_table "interactions", force: :cascade do |t|
+  create_table "events", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "type_id"
     t.text "note"
@@ -32,9 +32,9 @@ ActiveRecord::Schema.define(version: 2019_12_16_193552) do
     t.bigint "contact_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["contact_id"], name: "index_interactions_on_contact_id"
-    t.index ["type_id"], name: "index_interactions_on_type_id"
-    t.index ["user_id"], name: "index_interactions_on_user_id"
+    t.index ["contact_id"], name: "index_events_on_contact_id"
+    t.index ["type_id"], name: "index_events_on_type_id"
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "types", force: :cascade do |t|

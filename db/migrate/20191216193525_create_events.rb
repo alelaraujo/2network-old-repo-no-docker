@@ -1,6 +1,6 @@
 class CreateEvents < ActiveRecord::Migration[5.2]
   def change
-    create_table :interactions do |t|
+    create_table :events do |t|
       t.references :user
       t.references :type
       t.text :note
