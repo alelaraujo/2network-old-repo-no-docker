@@ -8,6 +8,7 @@ class ContactsController < ApplicationController
 
   def show
     authorize @contact 
+    @events = @contact.events
   end
   
   def new
