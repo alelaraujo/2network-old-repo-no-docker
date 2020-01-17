@@ -1,26 +1,35 @@
 <div class="container">
   <div class="row justify-content-md-center mt-3">
     <div class="col-md-9">
-      <h2><%= link_to contacts_path, class: "text-reset" do %>Contacts<% end %> > <%= @contact.first_name %> <%= @contact.last_name %></h2>          
-      <ul class="list-unstyled my-3">
-        <% @events.each do |event| %>
-          <li class="media">        
-            <i class="fas <%= event.type.icon %> fa-3x mr-2"></i>
-            <div class="media-body">
-              <h5 class="mt-0 mb-1">
-                <%= event.created_at.strftime('Created on %m/%d/%y') %> |
-                <%= link_to "Edit", edit_contact_event_path(event.contact_id, event.id), class: "text-reset" %> | 
-                <%= link_to "Delete", contact_event_path(event.contact_id, event.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "text-reset" %>
-              </h5>
-              <p><%= event.note %></p>
+      <h2><%= link_to contacts_path, class: "text-reset" do %>Contacts<% end %> > <%= @contact.first_name %> <%= @contact.last_name %></h2>
+
+      <nav class="nav">
+        <%= link_to "Add event", new_contact_event_path(@contact), class: "nav-link" %>
+        <%= link_to "Edit contact", edit_contact_path(@contact), class: "nav-link" %>
+        <%= link_to 'Delete contact', contact_path(@contact), method: :delete, data: { confirm: 'Are you sure?' }, class: "nav-link" %>
+        <%= link_to "Back to contacs", contacts_path, class: "nav-link" %>
+      </nav>
+
+      <% @events.each do |event| %>
+        <div class="card my-2">
+          <div class="card-header">
+            <i class="fas <%= event.type.icon %> mr-1"></i><%= event.type.name %>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= event.created_at.strftime('Created on %m/%d/%y') %></h5>
+            <p class="card-text"><%= event.note %></p>
+            <div class="dropdown">
+              <a class="btn btn-secondary btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Actions
+              </a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <%= link_to "Edit", edit_contact_event_path(event.contact_id, event.id), class: "dropdown-item" %> 
+                <%= link_to "Delete", contact_event_path(event.contact_id, event.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "dropdown-item" %>
+              </div>
             </div>
-          </li>
-         <% end %>
-      </ul>
-      <%= link_to "Add event", new_contact_event_path(@contact), class: "btn btn-primary" %>
-      <%= link_to "Back", contacts_path, class: "btn btn-secondary" %>
-      <%= link_to "Edit", edit_contact_path(@contact), class: "btn btn-secondary" %>
-      <%= link_to 'Delete', contact_path(@contact), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
