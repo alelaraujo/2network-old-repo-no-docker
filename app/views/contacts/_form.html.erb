@@ -3,6 +3,7 @@
     <%= f.input :first_name %>
     <%= f.input :last_name %>
     <%= f.input :photo %>
+    <%= f.input :frequency, collection: [['1', 'Daily'], ['7', 'Weekly'], ['30', 'Monthly'], ['365', 'Yearly']], label_method: :second, value_method: :first %>
     <%= f.button :submit, class: "btn-primary" %>
-    <%= f.button :button, "Cancel", type: "reset", class: "btn-outline-secondary" %>
+    <%= link_to "Cancel", :back, class: "btn btn-outline-secondary" %>
 <% end %>
