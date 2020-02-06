@@ -1,14 +1,23 @@
 <div class="container">
   <div class="row justify-content-md-center mt-3">
     <div class="col-md-9">
-      <h2><%= link_to contacts_path, class: "text-reset" do %>Contacts<% end %> > <%= @contact.first_name %> <%= @contact.last_name %></h2>
-
-      <nav class="nav">
-        <%= link_to "Add event", new_contact_event_path(@contact), class: "nav-link" %>
-        <%= link_to "Edit contact", edit_contact_path(@contact), class: "nav-link" %>
-        <%= link_to 'Delete contact', contact_path(@contact), method: :delete, data: { confirm: 'Are you sure?' }, class: "nav-link" %>
-        <%= link_to "Back to contacs", contacts_path, class: "nav-link" %>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><%= link_to contacts_path, class: "text-reset" do %>Contacts<% end %></li>
+          <li class="breadcrumb-item active" aria-current="page">Events</li>
+        </ol>
       </nav>
+      <div class="card w-100">
+        <div class="card-body">
+          
+          <h5 class="card-title"><%= cl_image_tag @contact.photo.key, class: "rounded-circle mr-3" , height: 50, width: 50, crop: :fill if @contact.photo.attached? %><%= @contact.first_name %> <%= @contact.last_name %></h5>
+          <p class="card-text">Bio.</p>
+          <%= link_to "Add event", new_contact_event_path(@contact), class: "btn btn-primary" %>
+          <%= link_to "Edit contact", edit_contact_path(@contact), class: "btn btn-primary"%>
+          <%= link_to 'Delete contact', contact_path(@contact), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
+          <%= link_to "Back to contacs", contacts_path, class: "btn btn-primary" %>
+        </div>
+      </div>
 
       <% @events.each do |event| %>
         <div class="card my-2">

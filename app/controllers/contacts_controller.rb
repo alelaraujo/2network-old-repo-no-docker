@@ -1,9 +1,11 @@
+# require 'pry-byebug'
 class ContactsController < ApplicationController
   before_action :set_contact, only: %i[show update edit destroy]
   # skip_before_action :authenticate_user!, only: [:index]
 
   def index
     @contacts = policy_scope(current_user.contacts).order(created_at: :desc)
+    # byebug
   end
 
   def show
@@ -50,6 +52,6 @@ class ContactsController < ApplicationController
   end
 
   def contact_params
-    params.require(:contact).permit(:first_name, :last_name, :frequency)
+    params.require(:contact).permit(:first_name, :last_name, :frequency, :photo)
   end
 end
