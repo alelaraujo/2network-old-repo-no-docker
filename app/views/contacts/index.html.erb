@@ -9,7 +9,11 @@
       <div class="list-group my-3">
         <% @contacts.each do |contact| %>
           <%= link_to contact_path(contact), class: "list-group-item list-group-item-action" do %>
-              <%= cl_image_tag contact.photo.key, class: "rounded-circle mr-1" , height: 50, width: 50, crop: :fill if contact.photo.attached? %>
+              <% if contact.photo.attached? %>
+                <%= cl_image_tag contact.photo.key, class: "rounded-circle mr-1" , height: 50, width: 50, crop: :fill %>
+               <% else %>
+                <%= image_tag "user_icon.png", class: "rounded-circle mr-1" , height: 50, width: 50, crop: :fill %>
+              <% end %>
             <%= contact.first_name %> <%= contact.last_name %>
           <% end %>
         <% end %>
