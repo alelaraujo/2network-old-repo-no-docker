@@ -3,10 +3,18 @@
     <div class="col-md-9">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item active" aria-current="page">Contacts</li>
+          <li class="breadcrumb-item active"><%= link_to contacts_path, class: "text-reset" do %>Contacts<% end %></li>
         </ol>
       </nav>
+      
       <div class="list-group my-3">
+        <%= form_tag contacts_path, method: :get do %>
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Find a contact"
+          %>      
+        <% end %>
         <% @contacts.each do |contact| %>
           <%= link_to contact_path(contact), class: "list-group-item list-group-item-action" do %>
               <% if contact.photo.attached? %>
