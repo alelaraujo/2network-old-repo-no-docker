@@ -3,6 +3,7 @@
     <%= cl_image_tag @contact.photo.key, class: "rounded-circle", height: 150, width: 150, crop: :fill if contact.photo.attached? %>
     <%= f.input :first_name %>
     <%= f.input :last_name %>
+    <%= f.input :bio %>
     <%= f.input :frequency, collection: [['1', 'Daily'], ['7', 'Weekly'], ['30', 'Monthly'], ['365', 'Yearly']], label_method: :second, value_method: :first %>
     <%= f.input :photo %>
     <%= f.button :submit, class: "btn-primary" %>
