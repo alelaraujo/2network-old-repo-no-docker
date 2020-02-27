@@ -5,7 +5,11 @@ class ContactsController < ApplicationController
 
   def index
     @contacts = policy_scope(current_user.contacts).order(created_at: :desc)
-    # byebug
+    if params[:query].present?
+      @contacts = @contacts.search_by_first_name_and_last_name(params[:query])
+    else
+      @contacts
+    end
   end
 
   def show
