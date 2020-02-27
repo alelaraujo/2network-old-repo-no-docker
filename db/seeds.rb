@@ -40,5 +40,15 @@ rand(35..50).times do
     puts ""
 end
 
-
+@user = User.create!(email: "test_b@gmail.com", password: "123456")
+puts "Created user #{@user.email}"
+rand(35..50).times do
+    @contact = Contact.create!(user_id: @user.id, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name )
+    puts "Created contact #{@contact.id}"
+    rand(10..20).times do
+        @event = Event.create!(user_id: @user.id, contact_id: @contact.id,type_id: type_id[rand(0..3)], note: Faker::Lorem.paragraph_by_chars(number: rand(30..256), supplemental: false))
+        puts "Created event #{@event.id} to the contact #{@contact.id}"
+    end
+    puts ""
+end
 

@@ -12,6 +12,6 @@ class Contact < ApplicationRecord
   pg_search_scope :search_by_first_name_and_last_name,
     against: [ :first_name, :last_name ],
     using: {
-      tsearch: { prefix: true } # <-- now `superman batm` will return something!
+      tsearch: { prefix: true }
     }
 end
