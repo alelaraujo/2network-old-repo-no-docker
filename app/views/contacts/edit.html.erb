@@ -1,8 +1,16 @@
 <div class="container">
   <div class="row justify-content-md-center mt-3">
     <div class="col-md-9">
-      <h2><%= link_to contacts_path, class: "text-reset" do %>Contacts<% end %> > <%= @contact.first_name %> <%= @contact.last_name %></h2>
-      <%= render 'form', contact: @contact %>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><%= link_to contacts_path, class: "text-reset" do %>Contacts<% end %></li>
+          <li class="breadcrumb-item"><%= link_to contact_path(@contact), class: "text-reset" do %>Contact<% end %></li>
+          <li class="breadcrumb-item active" aria-current="page">Edit</li>
+        </ol>
+      </nav>
+      <div class="container bg-white p-3">
+        <%= render 'form', contact: @contact %>
+      </div>
     </div>
   </div>
 </div>
