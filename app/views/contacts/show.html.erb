@@ -11,7 +11,7 @@
         <div class="card-body">
           
           <h5 class="card-title"><%= cl_image_tag @contact.photo.key, class: "rounded-circle mr-3" , height: 50, width: 50, crop: :fill if @contact.photo.attached? %><%= @contact.first_name %> <%= @contact.last_name %></h5>
-          <p class="card-text">Bio.</p>
+          <p class="card-text"><%= @contact.bio %></p>
           <%= link_to "Add event", new_contact_event_path(@contact), class: "btn btn-primary" %>
           <%= link_to "Edit contact", edit_contact_path(@contact), class: "btn btn-primary"%>
           <%= link_to 'Delete contact', contact_path(@contact), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
