@@ -9,33 +9,48 @@
       </nav>
       <div class="card w-100">
         <div class="card-body">
-          
-          <h5 class="card-title"><%= cl_image_tag @contact.photo.key, class: "rounded-circle mr-3" , height: 50, width: 50, crop: :fill if @contact.photo.attached? %><%= @contact.first_name %> <%= @contact.last_name %></h5>
-          <p class="card-text"><%= @contact.bio %></p>
-          <%= link_to "Add event", new_contact_event_path(@contact), class: "btn btn-primary" %>
-          <%= link_to "Edit contact", edit_contact_path(@contact), class: "btn btn-primary"%>
-          <%= link_to 'Delete contact', contact_path(@contact), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
-          <%= link_to "Back to contacs", contacts_path, class: "btn btn-primary" %>
+          <div class="d-flex justify-content-between">
+            <h5 class="card-title">
+              <% if @contact.photo.attached? %>
+                  <%= cl_image_tag @contact.photo.key, class: "rounded-circle mr-1" , height: 50, width: 50, crop: :fill %>
+                <% else %>
+                  <%= image_tag "user_icon.png", class: "rounded-circle mr-1" , height: 50, width: 50, crop: :fill %>
+                <% end %>
+              <%= @contact.first_name %> <%= @contact.last_name %></h5>
+            <div class="dropdown">
+                <a class="btn btn-secondary btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Actions
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <%= link_to "Add event", new_contact_event_path(@contact), class: "dropdown-item" %>
+                  <%= link_to "Edit contact", edit_contact_path(@contact), class: "dropdown-item"%>
+                  <%= link_to 'Delete contact', contact_path(@contact), method: :delete, data: { confirm: 'Are you sure?' }, class: "dropdown-item" %>
+                </div>
+              </div>
+          </div>
+            <p class="card-text"><%= @contact.bio %></p>
         </div>
       </div>
 
       <% @events.each do |event| %>
         <div class="card my-2">
           <div class="card-header">
-            <i class="fas <%= event.type.icon %> mr-1"></i><%= event.type.name %>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title"><%= event.created_at.strftime('Created on %m/%d/%y') %></h5>
-            <p class="card-text"><%= event.note %></p>
-            <div class="dropdown">
-              <a class="btn btn-secondary btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Actions
-              </a>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <%= link_to "Edit", edit_contact_event_path(event.contact_id, event.id), class: "dropdown-item" %> 
-                <%= link_to "Delete", contact_event_path(event.contact_id, event.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "dropdown-item" %>
+            <div class="d-flex justify-content-between">
+              <span><i class="fas <%= event.type.icon %> mr-1"></i><%= event.type.name %></span>
+              <div class="dropdown">
+                <a class="btn btn-secondary btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Actions
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <%= link_to "Edit", edit_contact_event_path(event.contact_id, event.id), class: "dropdown-item" %> 
+                  <%= link_to "Delete", contact_event_path(event.contact_id, event.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "dropdown-item" %>
+                </div>
               </div>
             </div>
+          </div>
+          <div class="card-body">
+            <p class="card-text"><%= event.note %></p>
+            <small><%= event.created_at.strftime('Created on %m/%d/%y') %></small>
           </div>
         </div>
       <% end %>
