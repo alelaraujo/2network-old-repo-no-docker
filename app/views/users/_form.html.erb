@@ -1,7 +1,7 @@
 <%= simple_form_for(@user) do |f| %>
     <%= f.error_notification %>
-    <%= f.input :email %>
     <%= f.input :photo %>
     <%= f.button :submit, class: "btn-primary" %>
+    
     <%= f.button :button, "Cancel", type: "reset", class: "btn-outline-secondary" %>
 <% end %>

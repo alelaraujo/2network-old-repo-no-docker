@@ -2,9 +2,15 @@
   <div class="row justify-content-md-center mt-3">
     <div class="col-md-9">
       <h2>Account</h2>
-      <%= cl_image_tag @user.photo.key, class: "rounded-circle mr-3" , height: 50, width: 50, crop: :fill if @user.photo.attached? %>
-      <%= @user.email%>
-      <%= link_to  "Edit", edit_user_path(@user.id) %>
+      <% if @user.photo.attached? %>
+        <%= cl_image_tag @user.photo.key, class: "rounded-circle mr-1" , height: 50, width: 50, crop: :fill %>
+      <% else %>
+        <%= image_tag "user_icon.png", class: "rounded-circle mr-1" , height: 50, width: 50, crop: :fill %>
+      <% end %>
+      <%= @user.email %>
+      <br />
+      <%= link_to  "Change avatar", edit_user_path(@user.id), class: "btn btn-secondary" %>
+      <%= link_to 'Change password or email', edit_user_registration_path(@user), class: "btn btn-secondary" %>
     </div>
   </div>
 </div>
