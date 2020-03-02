@@ -2,8 +2,12 @@
   <div class="row justify-content-md-center mt-3">
     <div class="col-md-9">
       <h2>Account > Edit</h2>
-      <%= render 'form', user: @user %>
-      <%= link_to 'Delete account', user_path(@user), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+      <% if current_user.photo.attached? %>
+        <%= cl_image_tag current_user.photo.key, class: "rounded-circle mr-1" , height: 50, width: 50, crop: :fill %>
+      <% else %>
+        <%= image_tag "user_icon.png", class: "rounded-circle mr-1" , height: 50, width: 50, crop: :fill %>
+      <% end %>
+      <%= render 'form', user: @user %>      
     </div>
   </div>
 </div>
