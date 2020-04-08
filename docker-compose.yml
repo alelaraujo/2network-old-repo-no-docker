@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  postgres:
+    image: postgres:10.5-alpine
+    environment:
+      POSTGRES_PASSWORD: secretpwd
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./tmp/postgres_data:/var/lib/postgresql/data  
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: /bin/bash -c "rm -f /tmp/server.pid && bundle exec rails server -b 0.0.0.0 -P /tmp/server.pid"
+    ports:
+      - "3008:3000"
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app
